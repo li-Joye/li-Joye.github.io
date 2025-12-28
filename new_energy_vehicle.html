@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>新能源汽车主题网页</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", Arial, sans-serif;
+      background: linear-gradient(135deg, #0B1622 0%, #1B2A3B 100%);
+      color: #E6F1FF;
+    }
+
+    /* 三栏布局：整体主容器 */
+    .three-column-layout {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+      min-width: 0;
+      width: 100%;
+      box-sizing: border-box;
+      /* 主内容竖直居中可加 align-items:center; */
+    }
+    .sidebar-left,
+    .sidebar-right {
+      flex: 1 1 0;
+      min-width: 0;
+      /* 可设置淡色背景区分，可选 */
+      background: transparent;
+    }
+
+    .center-content {
+      flex: 0 0 900px;
+      max-width: 100vw;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      /* 内容左右留白统一在此控制 */
+    }
+    /* 内容容器(覆盖旧版 .container 全部宽度控制) */
+    .center-content > .container {
+      width: 100%;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 0;
+      padding-right: 0;
+      /* 内部内容可再单独约束 */
+    }
+
+    /* header, main, footer 覆盖为100%宽度，容器保持在中间 */
+    header, main, footer {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* 页头样式 */
+    header {
+      color: #E6F1FF;
+      padding: 48px 20px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(11,22,34,0.55), rgba(11,22,34,0.85)), url("2.png") center/cover no-repeat;
+    }
+    header .container {
+      padding-left: 0;
+      padding-right: 0;
+      max-width: 700px;
+    }
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 32px;
+      letter-spacing: 2px;
+    }
+    header p {
+      margin: 0;
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    /* 主要内容块 */
+    main {
+      margin: 0;
+      padding: 0;
+    }
+    .section {
+      background: #0F1C2C;
+      padding: 28px 20px;
+      margin: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .section .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .section h2 {
+      margin-top: 0;
+      font-size: 20px;
+      border-left: 4px solid #00F2FF;
+      padding-left: 8px;
+    }
+    .section ul {
+      padding-left: 20px;
+      margin: 8px 0 0;
+    }
+    .section li {
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
+
+    /* 简单图文块 */
+    .image-box {
+      background: #10233A;
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      margin-top: 12px;
+      border: 1px solid rgba(0,242,255,0.12);
+    }
+    .image-box span {
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #E6F1FF, #00F2FF);
+      margin-bottom: 10px;
+    }
+
+    /* 时间线嵌入容器 */
+    .timeline-box {
+      margin: 24px 0 0;
+      padding: 0;
+      width: 100%;
+      background: transparent;
+      box-shadow: none;
+    }
+    .timeline-box iframe {
+      width: 100%;
+      height: 650px;
+      border: none;
+      border-radius: 0;
+    }
+
+    /* 页脚 */
+    footer {
+      margin: 0;
+      text-align: center;
+      font-size: 13px;
+      color: #9CB3D6;
+      padding: 24px 12px 32px;
+      background: #0B1622;
+    }
+    footer .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    a {
+      color: #00F2FF;
+    }
+    a:hover {
+      color: #3D7EFF;
+    }
+    footer a {
+      color: #0081ff;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* 响应式适配：900px以下两侧栏收缩为0，仅中间显示内容 */
+    @media (max-width: 1200px) {
+      .center-content {
+        flex: 1 1 600px;
+        max-width: 100vw;
+      }
+    }
+    @media (max-width: 900px) {
+      .three-column-layout {
+        flex-direction: column;
+      }
+      .sidebar-left,
+      .sidebar-right {
+        display: none;
+      }
+      .center-content {
+        flex: none;
+        max-width: 100vw;
+        min-width: 0;
+      }
+      .center-content > .container {
+        max-width: 100%;
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+      header .container,
+      .section .container,
+      footer .container {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+    @media (max-width: 600px) {
+      header {
+        padding: 30px 8px;
+      }
+      header h1 {
+        font-size: 24px;
+      }
+      .center-content > .container {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 第一部分：主题标题与简介 -->
+  <header>
+    <h1>从政策火种到渗透率五成：中国新能源汽车的发展格局</h1>
+    <p>回顾中国新能源汽车的发展历程，展望未来发展趋势</p>
+  </header>
+
+  <!-- 模块一：新能源汽车发展历史 -->
+  <main>
+    <div class="three-column-layout">
+      <div class="sidebar-left"></div>
+      <div class="center-content">
+        <div class="container">
+
+          <div style="margin-top: 50px;">
+            <p style="text-indent: 2em;">
+              据中国汽车工业协会发布数据，2025年10月，我国新能源汽车产销同比保持快速增长，新能源汽车新车销量达到汽车总销量的
+              <span style="color: red;">51.6%</span>，市场占有率
+              <span style="color: red;">首次过半</span>，标志着我国新能源汽车发展迈向新的阶段。
+            </p>
+          </div>
+
+          <!-- 第二部分：主体内容 -->
+          <section class="section">
+            <h2>新能源汽车的发展历史</h2>
+            <p>
+　　          中国新能源汽车的发展跨越数十年，总体而言，可以大致划分为
+              <strong>技术探索</strong>、
+              <strong>政策驱动</strong>、
+              <strong>市场转型</strong>、
+              <strong>全球领跑</strong>
+            四个核心阶段，实现了从国家战略布局到市场成熟、从跟跑到领跑的跨越式发展。
+            </p>
+            <!-- 新增：新能源汽车发展时间线（Knight Lab Timeline） -->
+            <div style="width: 100vw; max-width: 100vw; margin-left: 50%; transform: translateX(-50%); background: none; position: relative; left: 0; right: 0; box-sizing: border-box;">
+              <div style="margin-left: 70px; margin-right: 70px;">
+                <iframe
+                  src='https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=v2%3A2PACX-1vROBsKdTlc7ZzcLRPf_40tOQlLKfuamMc8_Ztz1f_X_CbvfZ_YohfxfBl4ltR1G7vcbxxP8HPSRFd1g&font=Default&lang=zh-cn&debug=true&initial_zoom=2&theme=contrast&width=100%25&height=650'
+                  width='100%' height='650'
+                  webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder='0'>
+                </iframe>
+              </div>
+            </div>
+          </section>
+
+          <!-- 模块二：发展现状 -->
+          <section class="section">
+            <h2>三类动力车、产销全面升：中国新能源汽车的发展格局</h2>
+            <p style="text-indent: 2em;">
+              新能源汽车，是指使用非常规能源驱动、采用先进动力系统和技术的汽车，按照动力类别，可主要分为<strong>纯电动汽车</strong>
+              （Pure Electric Vehicle，简称<span style="color: red;">PEV</span>）、<strong>插电式混合动力汽车</strong>
+              （Plug-in Hybrid Electric Vehicle，简称<span style="color: red;">PHEV</span>）和
+              <strong>燃料电池汽车</strong>
+              （Fuel Cell Electric Vehicle，简称<span style="color: red;">FCEV</span>）。三种主要的新能源汽车类型在核心动力源、储能介质、能量转化路径等各个方面都存在差异。
+            </p>
+            <div style="position: relative; width: 100%; height: 0px; padding: 57.19% 0px 0px; overflow: hidden; will-change: transform;"><iframe loading="lazy" src="https://e.infogram.com/2edad660-24b0-4e81-9b06-517f4b204f1d?src=embed&amp;embed_type=responsive_iframe" title="三种新能源汽车的区别" allowfullscreen="" allow="fullscreen" style="position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; border: none; padding: 0px; margin: 0px;"></iframe></div><div style="padding: 8px 0px; font-family: Arial; font-size: 13px; line-height: 15px; text-align: center; border-top: 1px solid rgb(218, 218, 218); margin: 0px 30px;"><a href="https://infogram.com/5lij56en5paw6io95rqq5rg96l2m55qe5yy65yir-1hxj48mq0x8dq2v" target="_blank" style="color: rgb(152, 152, 152); text-decoration: none;">三种新能源汽车的区别</a><br><a href="https://infogram.com" target="_blank" rel="nofollow" style="color: rgb(152, 152, 152); text-decoration: none;">Infogram</a></div>
+            <p style="text-indent: 2em;">
+              中国的新能源汽车市场中，纯电动汽车（PEV）与插电式混合动力汽车（PHEV）占据主导地位，二者的销量总和占据新能源汽车销量的
+              <span style="color: red; font-weight: bold;">99%</span>。
+            </p>
+            <!-- 数量图 白色背景+居中显示 -->
+            <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 24px 0;">
+              <div style="background: #fff; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 24px 16px; max-width: 630px;">
+                <iframe
+                  title="三种新能源汽车2024-2025销量（单位：万辆）"
+                  aria-label="面积图"
+                  id="datawrapper-chart-aVqqH"
+                  src="https://datawrapper.dwcdn.net/aVqqH/3/"
+                  scrolling="no"
+                  frameborder="0"
+                  style="border: none; background: #fff;"
+                  width="600"
+                  height="426"
+                  data-external="1"></iframe>
+              </div>
+            </div>
+            <p style="text-indent: 2em;">
+              在新能源汽车出海方面，新能源汽车出口依旧强劲。2023年，新能源汽车出口超过120万辆，2025年1-10月，新能源汽车出口量超过200万辆，中国新能源汽车的出海飞速发展。
+            </p>
+            <!-- 出口情况图表：白色背景+居中显示 -->
+            <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 24px 0;">
+              <div style="background: #fff; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 24px 16px; max-width: 630px;">
+                <iframe title="2017-2025年中国新能源汽车内销和出口情况（单位：万辆）"
+                  aria-label="堆叠条形图"
+                  id="datawrapper-chart-rk5oF"
+                  src="https://datawrapper.dwcdn.net/rk5oF/1/"
+                  scrolling="no"
+                  frameborder="0"
+                  style="border: none; background: #fff; border-radius: 8px;"
+                  width="600"
+                  height="464"
+                  data-external="1"></iframe>
+              </div>
+            </div>
+            <p style="text-indent: 2em;">
+              历经数十年发展，中国新能源汽车的市场占有率超过<strong style="color: red;">45%</strong>，更是在2025年10月超过<strong style="color: red;">50%</strong>，有望成为未来中国汽车行业的主要发展方向。
+            </p>
+            <!-- 渗透率折线图 居中白色背景 -->
+            <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 24px 0;">
+              <div style="background: #fff; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 24px 16px; max-width: 650px; width: 100%;">
+                <iframe title="近十年中国新能源汽车市场渗透率" aria-label="线条" id="datawrapper-chart-mMCHE" src="https://datawrapper.dwcdn.net/mMCHE/1/" scrolling="no" frameborder="0" style="border: none; background: #fff; border-radius: 8px;" width="601" height="565" data-external="1"></iframe>
+              </div>
+            </div>
+          </section>
+
+          <!-- 模块三：未来展望与个人行动 + 矩形树图 -->
+          <section class="section">
+            <h2>充电基础设施的日臻完善</h2>
+            <p>
+              随着充电设施不断完善、续航里程持续提升，新能源汽车正在逐渐走进千家万户，成为城市出行的重要选择。
+              新能源汽车的快速发展，离不开企业参与、市场推动，更离不开战略引领、政策“组合拳”持续加码。近年来，技术突破带来的续航提升、超快充技术普及叠加电池成本下降，让新能源汽车运营成本优势更加明显。作为新能源汽车产业的关键支撑的充电网络等基础设施持续建设，充换电站布局逐渐完善，也为新能源商用车发展提供有力支撑。
+              我国新能源汽车保有量持续增加，离不开充电基础设施建设步伐的不断加快。
+              近年来，我国充电基础设施实现跨越式发展，充电服务能力持续提升。
+              根据国家充电设施监测服务平台数据，截至2025年11月底，我国电动汽车充电基础设施（枪）总数达到1932.2万个，同比增长52.0%。其中，公共充电设施（枪）462.5万个，同比增长36.0%，公共充电桩额定总功率达到2.10亿千瓦，平均功率约为45.34千瓦；私人充电设施（枪）1469.7万个，同比增长57.8%，私人充电设施报装用电容量达到1.29亿千伏安。 这也意味着我国已初步建成大规模的充电基础设施网络，可以满足数千万辆新能源汽车的充电需求。<br>
+            </p>
+            
+            <!-- Tableau可视化：2023年——2025年各季度充电基础设施数量 -->
+            <div style="margin-top: 24px;">
+              <h3 style="margin-top: 0; font-size: 18px;">2023年——2025年各季度充电基础设施数量（万个）</h3>
+              <div class='tableauPlaceholder' id='viz1766766966674' style='position: relative'><noscript><a href=' '><img alt='2023年——2025年各季度充电基础设施数量（万个） ' src='https://public.tableau.com/static/images/20/20232025_17667668427890/1/1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='20232025_17667668427890&#47;1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https://public.tableau.com/static/images/20/20232025_17667668427890/1/1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='zh-CN' /><param name='filter' value='publish=yes' /></object></div>
+              <script type='text/javascript'>
+                var divElement = document.getElementById('viz1766766966674');
+                var vizElement = divElement.getElementsByTagName('object')[0];
+                vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';
+                var scriptElement = document.createElement('script');
+                scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                vizElement.parentNode.insertBefore(scriptElement, vizElement);
+              </script>
+            </div>
+            <p>
+              越来越完善的充电设施构建了交通能源补给网络，让新能源汽车车主充电更便利、出行更安心。
+              经过持续大规模建设，我国充电设施网络日臻完善。“十四五”时期，我国建成全球最大的新能源汽车充电网络
+              ，每5辆新能源汽车就有2个充电桩。高速公路建成充电设施超4万个，是5年前的5倍。
+            </p>
+            <p>
+              各省份在充电基础设施建设上差异明显，呈现出“东部领跑、中西部追赶、全国提质扩面”的格局。广东、浙江、江苏、山东、上海、河南、四川、安徽、湖北、福建TOP10地区建设的公共充电设施占比达66.0%，这表明公共充电资源的区域集中度较高。全国充电电量主要集中在广东、江苏、河北、四川、浙江、上海、山东、福建、河南等省份。
+            </p>
+            <div class='tableauPlaceholder' id='viz1766799922030' style='position: relative'><noscript><a href='#'><img alt='2023年——2025年TOP9省份公共桩保有量（单位：台） ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;2_&#47;2_17667995151250&#47;5&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='2_17667995151250&#47;5' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;2_&#47;2_17667995151250&#47;5&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='zh-CN' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1766799922030');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+           
+          </section>
+          <section class="section">
+            <div style="margin-top: 16px;">
+              <h2>新能源车企发展状况</h3>
+                <p>
+                  2025 年新能源汽车市场延续增长态势，头部车企交付量接连刷新纪录，行业渗透率稳步攀升至 55.9%，但亮眼销量背后，车企普遍陷入增收不增利的发展困局，利润承压成为全行业共同面临的严峻挑战。
+                </p>
+              <iframe src="tree.html"
+                      title="新能源汽车矩形树图"
+                      style="width: 100%; height: 800px; border: none; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
+              </iframe>
+              <p>
+                蔚来、小鹏虽销量同比大幅增长，亏损幅度持续收窄，但尚未实现稳定盈利。
+              </p>
+            </div>
+          </section>
+          <section class="section">
+            <h2>舆情焦点</h2>
+            
+            <!-- 词云图 -->
+            <div style="margin: 24px 0; text-align: center;">
+              <img src="my_analysis_wordcloud_transparent.png" alt="舆情焦点词云图" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+            </div>
+            
+            <ul style="line-height: 1.8; padding-left: 24px;">
+              <li style="margin-bottom: 12px;">
+                <strong style="color: #00F2FF;">服务细节</strong>：用户重点提到 <span style="color: #FFD700;">"响应"</span>、<span style="color: #FFD700;">"交付"</span>、<span style="color: #FFD700;">"充电"</span>、<span style="color: #FFD700;">"续航"</span> 等用车场景，以及 <span style="color: #FFD700;">"主动救援"</span>、<span style="color: #FFD700;">"闭环服务"</span> 的体验；
+              </li>
+              <li style="margin-bottom: 12px;">
+                <strong style="color: #00F2FF;">品牌关联</strong>：词中出现 <span style="color: #FFD700;">"阿维塔"</span>、<span style="color: #FFD700;">"华为"</span>、<span style="color: #FFD700;">"比亚迪"</span>、<span style="color: #FFD700;">"蔚来"</span>、<span style="color: #FFD700;">"小米"</span> 等新能源车企，说明用户在讨论时会关联行业竞品；
+              </li>
+              <li style="margin-bottom: 12px;">
+                <strong style="color: #00F2FF;">附加标签</strong>：<span style="color: #FFD700;">"健康"</span>、<span style="color: #FFD700;">"防护"</span>、<span style="color: #FFD700;">"五星"</span>、<span style="color: #FFD700;">"七星"</span> 等词，是用户对服务品质的评级类描述。
+              </li>
+            </ul>
+          </section>
+      
+        </div>
+      </div>
+      <div class="sidebar-right"></div>
+    </div>
+  </main>
+
+  <!-- 第三部分：页脚信息 -->
+  <footer>
+    <div style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+      <h3>参考文献</h3>
+      <div style="color: #E6F1FF; line-height: 1.8; text-align: left; margin: 0;">
+        <p style="margin-bottom: 12px; margin-left: 0; padding-left: 0;">
+          国家电网报：《织密充电网络"续航"绿色出行》，2025年11月18日，<a href="http://epaper.sgcctop.com/202511/18/#page=2" target="_blank" style="color: #00F2FF; text-decoration: none;">http://epaper.sgcctop.com/202511/18/#page=2</a>
+        </p>
+        <p style="margin-bottom: 12px; margin-left: 0; padding-left: 0;">
+          国家能源局：《国家能源局发布2025年11月全国电动汽车充电设施数据》，2025年12月23日，<a href="http://www.nea.gov.cn/20251223/44812bebc45e4ba6b8f8e918ea86ff13/c.html" target="_blank" style="color: #00F2FF; text-decoration: none;">http://www.nea.gov.cn/20251223/44812bebc45e4ba6b8f8e918ea86ff13/c.html</a>
+        </p>
+        <p style="margin-bottom: 12px; margin-left: 0; padding-left: 0;">
+          中国网：《各地加速布局 政策技术共助充电产业向好》，2025年7月25日，<a href="http://dicn.china.com.cn/2025-07/25/content_43166463.shtml" target="_blank" style="color: #00F2FF; text-decoration: none;">http://dicn.china.com.cn/2025-07/25/content_43166463.shtml</a>
+        </p>
+        <p style="margin-bottom: 12px; margin-left: 0; padding-left: 0;">
+          新华财经：《国家能源局：17个省份已开展车网互动规模化应用试点》，2025年10月31日，<a href="https://m.cnfin.com/dz-lb//zixun/20251031/4327588_1.html" target="_blank" style="color: #00F2FF; text-decoration: none;">https://m.cnfin.com/dz-lb//zixun/20251031/4327588_1.html</a>
+        </p>
+        <p style="margin-bottom: 12px; margin-left: 0; padding-left: 0;">
+          经济参考报：《各地加速布局 政策技术共助充电产业向好》，2025年2月25日，<a href="http://www.jjckb.cn/20250225/4ffb63247f0f4af8a2fc7e7b7096cbb7/c.html" target="_blank" style="color: #00F2FF; text-decoration: none;">http://www.jjckb.cn/20250225/4ffb63247f0f4af8a2fc7e7b7096cbb7/c.html</a>
+        </p>
+        <p style="margin-bottom: 12px; margin-left: 0; padding-left: 0;">
+          中国电动汽车充电基础设施促进联盟：开放数据平台联盟报告，2023——2025年《全国电动汽车充换电基础设施运行情况》，<a href="https://evcipa.com/dataCenter/dataList" target="_blank" style="color: #00F2FF; text-decoration: none;">https://evcipa.com/dataCenter/dataList</a>
+        </p>
+        <p style="margin-bottom: 12px; margin-left: 0; padding-left: 0;">
+          张夕勇.中国新能源汽车的跨越式发展之路[J].经济导刊,2023,(02):40-47.
+        </p>
+        <p style="margin-bottom: 12px; margin-left: 0; padding-left: 0;">
+          中国汽车工业协会：《"十城千辆"工程，初探新能源汽车市场化》，2013年12月12日，<a href="http://www.caam.org.cn/chn/8/cate_81/con_5109126.html" target="_blank" style="color: #00F2FF; text-decoration: none;">http://www.caam.org.cn/chn/8/cate_81/con_5109126.html</a>
+        </p>
+        <p style="margin-bottom: 12px; margin-left: 0; padding-left: 0;">
+          中国电动汽车充电基础设施促进联盟：《十年蝶变，中国充换电行业织就绿色能量网》，2025年11月5日，<a href="https://www.evcipa.org.cn/newsinfo/10797217.html" target="_blank" style="color: #00F2FF; text-decoration: none;">https://www.evcipa.org.cn/newsinfo/10797217.html</a>
+        </p>
+        <p style="margin-bottom: 12px; margin-left: 0; padding-left: 0;">
+          新华网：《新能源汽车下乡"提速"激活农村市场汽车消费潜力》，2024年6月5日，<a href="https://www.news.cn/auto/20240605/80611988c5d044a989e6a37f90afe3a5/c.html" target="_blank" style="color: #00F2FF; text-decoration: none;">https://www.news.cn/auto/20240605/80611988c5d044a989e6a37f90afe3a5/c.html</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+
+
